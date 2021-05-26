@@ -10,9 +10,9 @@ public class Util {
     private static final String connectionURL = "jdbc:mysql://localhost:3307/test";
 
     public static Connection getConnection() {
-        Connection connection =null;
-        try{
-            connection = DriverManager.getConnection(connectionURL,userName,password);
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(connectionURL, userName, password);
 
         } catch (SQLException e) {
             e.printStackTrace();

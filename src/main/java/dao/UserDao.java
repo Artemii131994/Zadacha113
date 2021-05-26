@@ -1,4 +1,5 @@
 package dao;
+
 import model.User;
 
 import java.util.List;
