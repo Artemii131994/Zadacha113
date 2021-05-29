@@ -20,7 +20,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     "lastname VARCHAR(50), " +
                     "age int, " +
                     "PRIMARY KEY (id))");
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -28,7 +28,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() { //удаление таблицы
         try (Statement statement = Util.getConnection().createStatement();) {
             statement.executeUpdate("DROP TABLE IF EXISTS testrt");
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -40,7 +40,7 @@ public class UserDaoJDBCImpl implements UserDao {
             prepaSt.setString(3, String.valueOf(age));
             prepaSt.executeUpdate();
             System.out.println("User с именем " + name + " добавлен базу данных");
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -48,7 +48,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void removeUserById(long id) { //удаление по id
         try (PreparedStatement prSt = Util.getConnection().prepareStatement("DELETE FROM testrt WHERE id=?");) {
             prSt.setLong(1, id);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -66,8 +66,9 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.add(user1);
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
+            ;
         }
         return user;
     }
@@ -75,7 +76,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void cleanUsersTable() { // очистка таблицы
         try (Statement statement = Util.getConnection().createStatement()) {
             statement.executeUpdate("TRUNCATE TABLE testrt");
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
